@@ -1,0 +1,114 @@
+/* app css stylesheet */
+html,
+body{
+  height: 100%;
+}
+#top {
+  background: #000;
+  color: #fff;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+#top h1{
+  margin: 2px 0 0 0;
+  padding: 0;
+  vertical-align: middle;
+}
+#top .glyphicon {
+  margin-top: 5px;
+}
+/* Filter Menu */
+.filter-menu {
+  margin: 70px 0 10px;
+}
+.filter-menu .select {
+  margin-left: 10px; 
+}
+
+/* Venue Card Styles */
+
+/* Make sure the modal covers right */
+.venue-list,
+.venue {
+  position: static;
+}
+.venue{
+  width: 200px;
+  margin: .25%;
+  float: left;
+}
+.venue-list{
+  margin: 10px 0;
+}
+.venue-rating{
+  text-align: right;
+}
+.venue img {
+  width: 100%;
+  height: auto;
+}
+
+/* MODALS */
+.screenmask {
+   position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: #000;
+    opacity: .5;
+    text-indent: -9999px;
+}
+
+.venue-info {
+  position: absolute;
+  top: 70px; 
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  min-height: 200px;
+  background-color: white;
+  border: 1px solid grey;
+  color: black;
+  z-index: 999 !important;
+  opacity: 1;
+}
+
+/* Menus */
+.menu {
+  position: fixed;
+  top: 50px;
+  bottom: 0px;
+  background: black;
+  color: white;
+  z-index: 9999;
+  width: 70%;
+  transition: .5s ease-in-out;
+  display: block !important;
+}
+.cuisine.menu.hide {
+  -webkit-transform: translate(-100%,0);
+  -moz-transform: translate(-100%,0);
+  transform: translate(-100%,0);
+}
+.help.menu {
+  right: 0px;
+}
+.help.menu.hide {
+  -webkit-transform: translate(100%,0);
+  -moz-transform: translate(100%,0);
+  transform: translate(100%,0);
+}
+/* HELPERS */
+.center-text {
+  text-align: center;
+}
+
+.no-float {
+  float: none;
+}
+/* Media Queries */

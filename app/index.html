@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="hunger" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="hunger" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="hunger" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="hunger" ng-controller ="HungerCtrl" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hunger</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/hammerjs/hammer.min.js"></script>
+  <script src="bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+  <script src="bower_components/angular-gestures/gestures.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div class="container-fluid">
+    <header id="top" class="row">
+      <div class="col-sm-12">
+        <h1 class = "center-text">
+          <span class="glyphicon glyphicon-cutlery pull-left" ng-click="helper.toggleCuisine()" aria-hidden="true"></span>
+            Hunger
+          <span class="glyphicon glyphicon-question-sign pull-right" ng-click="helper.toggleHelp()" aria-hidden="true"></span>
+        </h1>
+      </div>
+    </header>
+
+    <div id="cuisine-menu" class="row cuisine menu hide">
+      <div class="col-xs-10 no-float">
+        <div class="col-xs-6">
+          Images of different types of restaurants will go here, along with other settings. 
+        </div>
+        <div class="col-xs-6">
+          These will run new queries to foursquare
+        </div>
+      </div>
+    </div>
+
+    <div id="help-menu" class="row help menu hide">
+      <div class="col-xs-10 no-float">
+        <p>
+          Just need some instructions here.
+        </p>
+      </div>
+    </div>
+
+    <div class="row filter-menu">
+      <div class="col-xs-12 center-block no-float center-text">
+        <form action="">
+          <label for="search">Search:</label> 
+          <input name="search" type="text" ng-model="query">
+          <label for="sort" class="select">Sort:</label> 
+          <select name="sort" ng-model="orderProp">
+            <option value="name">Alphabetical</option>
+            <option value="-rating">Highest Rating</option>
+            <option value="distance">Distance</option>
+          </select>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="venue-list col-sm-12 row">
+        
+        <div class="col-xs-6 col-sm-4 venue" ng-repeat="venue in venueTest | filter:query | orderBy:orderProp">
+          <div class="thumbnail" ng-click="helper.showModal(venue.id, $event)">
+            <img src="http://{{ venue.img }}"  alt="{{ venue.name }} Image" />
+            <div class="caption row">
+              <div class="col-sm-12">
+                <span class="venue-name">{{ venue.name }}</span>
+                <span class="venue-rating pull-right">Rating: {{ venue.rating }}</span>
+              </div>
+            </div><!-- End .caption -->
+          </div><!-- End .thumbnail -->
+          <div id="venue-{{ venue.id }}-mask" ng-click="helper.hideModal(venue.id)" class="screenmask hide"> a&nbsp; </div>
+          <div id="venue-{{ venue.id }}-modal"  class="venue-info col-xs-8 col-md-6 no-float hide">
+            <div class="modal-top row">
+              <h2 class="center-text">{{ venue.name }}</h2>
+            </div>
+            <div class="modal-body row">
+              <div class="col-xs-6">
+                <img src="http://{{ venue.img }}"  alt="{{ venue.name }} Image" />
+              </div>
+              <div class="col-xs-6">
+                <p>
+                  Rating: {{ venue.rating }} Distance: {{ venue.distance }}
+                </p>
+
+                <p>
+                  Put some descriptions here.
+                </p>
+              </div>
+              
+            </div>
+          </div>
+        </div><!-- VENUE -->
+
+    </div><!-- End .venue-list -->
+    <footer class="row">
+      <div class="col-sm-12 center-text">
+        <p>
+          {{ name }} v<span app-version>0.1a</span>{{ count }}
+        </p>
+      </div>
+    </footer>
+  
+  </div><!-- .container-fluid -->
+</body>
+</html>
